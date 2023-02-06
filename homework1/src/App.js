@@ -19,7 +19,6 @@ export class App extends React.Component {
     this.setState({[event.target.name]: event.target.value})
   }
   render(){
-    console.log(this.state);
     return (
       <div className="App">
         <div className="container">
