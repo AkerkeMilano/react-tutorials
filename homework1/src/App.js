@@ -9,7 +9,6 @@ import { FormResult } from "./component/FormResult/FormResult";
 export class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       fields: {
         name: "",
@@ -25,7 +24,6 @@ export class App extends React.Component {
       openForm: true,
     };
   }
-
   handleInputChange = (event) => {
     this.setState({
       fields: {
@@ -36,53 +34,77 @@ export class App extends React.Component {
   };
   validateInputs = () => {
     let errors = {};
+    let formIsValid = true;
     for (let key in this.state.fields) {
       if (this.state.fields[key].length === 0) {
         errors[key] = "Поле пустое. Заполните пожалуйста";
+        formIsValid = false;
       }
     }
-
     Object.entries(this.state.fields)
       .slice(5, 7)
       .forEach((entry) => {
         if (this.state.fields[entry[0]].length > 600) {
           errors[entry[0]] = "Превышен лимит символов в поле";
+          formIsValid = false;
         }
       });
 
     //name
     if (
       this.state.fields["name"].length > 0 &&
-      !Boolean(this.state.fields["name"].charAt(0).match(/[A-ZА-ЯЁ]/))
+      !Boolean(this.state.fields["name"].trim().charAt(0).match(/[A-ZА-ЯЁ]/))
     ) {
       errors["name"] =
         "Имя должно начинаться с заглавной буквы. Заполните пожалуйста правильно!";
+      formIsValid = false;
     }
     //surname
     if (
       this.state.fields["surname"].length > 0 &&
-      !Boolean(this.state.fields["surname"].charAt(0).match(/[A-ZА-ЯЁ]/))
+      !Boolean(this.state.fields["surname"].trim().charAt(0).match(/[A-ZА-ЯЁ]/))
     ) {
       errors["surname"] =
         "Фамилия должна начинаться с заглавной буквы. Заполните пожалуйста правильно!";
+      formIsValid = false;
     }
 
     if (
       this.state.fields["website"].length > 0 &&
-      !Boolean(this.state.fields["website"].startsWith("https://"))
+      !Boolean(this.state.fields["website"].trim().startsWith("https://"))
     ) {
       errors["website"] = "Сайт должен начинаться на https://";
+      formIsValid = false;
     }
 
     this.setState({ errors: errors });
+    return formIsValid;
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.validateInputs();
-    if (Object.keys(this.state.errors).length === 0) {
-      this.setState({ openForm: false });
+    if(this.validateInputs()) {
+      this.setState({openForm: false});
+      alert("Форма отправлена!");
+    } else {
+      alert("Заполните данные правильно!");
     }
-    console.log(this.state);
+  };
+  resetForm = (event) => {
+    event.preventDefault();
+    this.setState({
+      fields: {
+        name: "",
+        surname: "",
+        dateOfBirth: "",
+        phoneNumber: "",
+        website: "",
+        aboutYourself: "",
+        techStack: "",
+        descriptionOfProject: "",
+      },
+      errors: {},
+      openForm: true,
+    })
   };
   render() {
     return (
@@ -180,7 +202,7 @@ export class App extends React.Component {
                 error={this.state.errors["descriptionOfProject"]}
               />
               <div className="btns">
-                <Button type="" title="Отмена" />
+                <Button type="" title="Отмена" onClick={this.resetForm} />
                 <Button type="submit" title="Сохранить" />
               </div>
             </form>
