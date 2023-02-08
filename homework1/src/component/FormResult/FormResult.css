@@ -1,0 +1,9 @@
+.formResult {
+    height: 100vh;
+}
+.formLine {
+    padding: 5px;
+    border: 1px solid rgb(225, 171, 221);
+    height: auto;
+    width: 400px;
+}

@@ -1,7 +1,7 @@
 import React from "react";
-import "./InputLine.css";
+import "./Input.css";
 
-export class InputLine extends React.Component {
+export class Input extends React.Component {
   render() {
     return (
       <div className="InputLine">
@@ -15,6 +15,8 @@ export class InputLine extends React.Component {
           onChange={this.props.handleChange}
           value={this.props.inputValue}
           placeholder={this.props.placeholder}
+          pattern={this.props.pattern}
+          maxLength={this.props.maxlength}
         />
       </div>
     );
