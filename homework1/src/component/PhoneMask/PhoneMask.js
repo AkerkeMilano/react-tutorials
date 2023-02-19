@@ -1,30 +1,25 @@
 import React from "react";
 import { Error } from "../Error/Error";
-import "./Input.css";
+import InputMask from 'react-input-mask';
+import "./PhoneMask.css";
 
-export const Input = ({
+export const PhoneMask = ({
   label,
   name,
-  type,
   handleChange,
   inputValue,
-  placeholder,
-  pattern,
-  maxlength,
-  error
+  error,
+  mask
 }) => {
   return (
-    <div className="InputLine">
+    <div className="PhoneMask">
       <label>{label}</label>
-      <input
+      <InputMask
         className="inputStyle"
         name={name}
-        type={type ? type : "text"}
         onChange={handleChange}
         value={inputValue}
-        placeholder={placeholder}
-        pattern={pattern}
-        maxLength={maxlength}
+        mask={mask}
       />
       {error && <Error>{error}</Error>}
     </div>

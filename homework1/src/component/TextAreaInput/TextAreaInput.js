@@ -1,20 +1,27 @@
 import React from "react";
+import { Error } from "../Error/Error";
 import "./TextAreaInput.css";
 
-export class TextAreaInput extends React.Component {
-  render() {
-    return (
-      <div className="TextAreaInput">
-        <label>{this.props.label}</label>
-        <textarea
-          className="textArea"
-          name={this.props.name}
-          onChange={this.props.handleChange}
-          value={this.props.inputValue}
-          placeholder={this.props.placeholder}
-          rows={7}
-        />
-      </div>
-    );
-  }
-}
+export const TextAreaInput = ({
+  label,
+  name,
+  handleChange,
+  inputValue,
+  placeholder,
+  error
+}) => {
+  return (
+    <div className="TextAreaInput">
+      <label>{label}</label>
+      <textarea
+        className="textArea"
+        name={name}
+        onChange={handleChange}
+        value={inputValue}
+        placeholder={placeholder}
+        rows={7}
+      />
+      {error ? <Error>{error}</Error> : <Error>Осталось {600 - inputValue.length}/600</Error>}
+    </div>
+  );
+};
