@@ -1,24 +1,33 @@
 import React from "react";
+import { Error } from "../Error/Error";
 import "./Input.css";
 
-export class Input extends React.Component {
-  render() {
-    return (
-      <div className="InputLine">
-        <label>
-          {this.props.label}
-        </label>
-        <input
-          className="inputStyle"
-          name={this.props.name}
-          type={this.props.type ? this.props.type : "text"}
-          onChange={this.props.handleChange}
-          value={this.props.inputValue}
-          placeholder={this.props.placeholder}
-          pattern={this.props.pattern}
-          maxLength={this.props.maxlength}
-        />
-      </div>
-    );
-  }
-}
+export const Input = ({
+  label,
+  name,
+  type,
+  handleChange,
+  inputValue,
+  placeholder,
+  pattern,
+  maxlength,
+  error
+}) => {
+  console.log(error);
+  return (
+    <div className="InputLine">
+      <label>{label}</label>
+      <input
+        className="inputStyle"
+        name={name}
+        type={type ? type : "text"}
+        onChange={handleChange}
+        value={inputValue}
+        placeholder={placeholder}
+        pattern={pattern}
+        maxLength={maxlength}
+      />
+      {error && <Error>{error}</Error>}
+    </div>
+  );
+};
