@@ -2,6 +2,7 @@ import React from "react";
 import "./FormResult.css";
 
 export const FormResult = ({ fields }) => {
+  window.scrollTo(0,0); 
   return (
     <div className="formResult">
       <h2>

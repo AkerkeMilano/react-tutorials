@@ -1,14 +1,14 @@
-.InputLine {
+.PhoneMask {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
+
 .inputStyle {
     padding: 10px;
     border-radius: 5px;
     border: 2px solid rgb(255, 255, 255);
     outline: none;
-    margin-bottom: 10px;
 }
 
 .inputStyle:hover {

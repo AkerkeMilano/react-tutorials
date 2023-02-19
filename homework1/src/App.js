@@ -10,6 +10,7 @@ import {
   validateEmail,
   validateTextLimit,
 } from "./helpers";
+import { PhoneMask } from "./component/PhoneMask/PhoneMask";
 
 const initialFieldValues = {
   name: "",
@@ -108,17 +109,7 @@ export const App = () => {
               placeholder="Введите Дату рождения"
               error={errors.dateOfBirth}
             />
-            <Input
-              name="phoneNumber"
-              type="tel"
-              label="Телефон"
-              handleChange={handleInputChange}
-              inputValue={fields.phoneNumber}
-              placeholder="Введите Ваш номер телефона в формате 7-7777-77-77"
-              pattern="[0-9]{1}-[0-9]{4}-[0-9]{2}-[0-9]{2}"
-              maxlength="14"
-              error={errors.phoneNumber}
-            />
+            <PhoneMask name="phoneNumber" label="Телефон" mask="9-9999-99-99" inputValue={fields.phoneNumber} handleChange={handleInputChange} error={errors.phoneNumber} />
             <Input
               name="website"
               label="Сайт"
